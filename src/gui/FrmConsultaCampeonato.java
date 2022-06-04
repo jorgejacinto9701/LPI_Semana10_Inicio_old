@@ -92,7 +92,7 @@ public class FrmConsultaCampeonato extends JFrame implements ActionListener {
 			new Object[][] {
 			},
 			new String[] {
-				"Código", "Nombre", "DNI","Fecha Nacimiento", 
+				"Código", "Nombre", "año","Estado", 
 			}
 		));
 		scrollPane.setViewportView(table);

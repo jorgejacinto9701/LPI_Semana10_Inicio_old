@@ -102,7 +102,7 @@ public class FrmReporteCampeonato extends JFrame implements ActionListener {
 		contentPane.add(lblFechaDeInicio);
 		
 		cboEstado = new JComboBox<String>();
-		cboEstado.setModel(new DefaultComboBoxModel<String>(new String[] {"[Seleccione]", "Activo", "Inactivo"}));
+		cboEstado.setModel(new DefaultComboBoxModel<String>(new String[] {"[Todos]", "Activo", "Inactivo"}));
 		cboEstado.setBounds(135, 152, 149, 22);
 		contentPane.add(cboEstado);
 		
