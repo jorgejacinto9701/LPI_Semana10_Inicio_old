@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -10,26 +9,30 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
-public class FrmReporteDocente extends JFrame implements ActionListener {
+public class FrmConsultaCampeonato extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtInicio;
-	private JTextField txtFin;
+	private JTable table;
 	private JButton btnFiltrar;
 	private JTextField txtNombre;
-	private JTextField txtDNI;
-	private JPanel panelReporte;
+	private JTextField txtAnio;
+	private JComboBox<String> cboEstado;
+
 	/**
 	 * Launch the application.
 	 */
@@ -45,7 +48,7 @@ public class FrmReporteDocente extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FrmReporteDocente frame = new FrmReporteDocente();
+					FrmConsultaCampeonato frame = new FrmConsultaCampeonato();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,49 +60,42 @@ public class FrmReporteDocente extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public FrmReporteDocente() {
+	public FrmConsultaCampeonato() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1190, 755);
+		setBounds(100, 100, 998, 545);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblTitulo = new JLabel("Reporte de docente");
+		JLabel lblTitulo = new JLabel("Consulta de campeonato");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(10, 11, 1154, 48);
+		lblTitulo.setBounds(10, 11, 950, 48);
 		contentPane.add(lblTitulo);
 		
-		JLabel lblFechaDeInicio = new JLabel("Fecha de Inicio");
+		JLabel lblFechaDeInicio = new JLabel("Estado");
 		lblFechaDeInicio.setBounds(38, 156, 104, 20);
 		contentPane.add(lblFechaDeInicio);
 		
-		JLabel lblFechaDeFin = new JLabel("Fecha de Fin");
-		lblFechaDeFin.setBounds(359, 159, 85, 14);
-		contentPane.add(lblFechaDeFin);
-		
-		txtInicio = new JTextField();
-		txtInicio.setBounds(135, 156, 149, 20);
-		contentPane.add(txtInicio);
-		txtInicio.setColumns(10);
-		
-		txtFin = new JTextField();
-		txtFin.setBounds(454, 156, 149, 20);
-		contentPane.add(txtFin);
-		txtFin.setColumns(10);
-		
 		btnFiltrar = new JButton("Filtrar");
 		btnFiltrar.addActionListener(this);
-		btnFiltrar.setBounds(959, 67, 162, 23);
+		btnFiltrar.setBounds(760, 67, 162, 23);
 		contentPane.add(btnFiltrar);
 		
-		panelReporte = new JPanel();
-		panelReporte.setBorder(new TitledBorder(null, "Reportes", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		panelReporte.setBounds(20, 204, 1144, 501);
-		contentPane.add(panelReporte);
-		panelReporte.setLayout(new BorderLayout());
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 204, 940, 268);
+		contentPane.add(scrollPane);
 		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Código", "Nombre", "DNI","Fecha Nacimiento", 
+			}
+		));
+		scrollPane.setViewportView(table);
 		
 		JLabel lblNewLabel = new JLabel("Nombre");
 		lblNewLabel.setBounds(38, 71, 69, 14);
@@ -110,14 +106,19 @@ public class FrmReporteDocente extends JFrame implements ActionListener {
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("DNI");
+		JLabel lblNewLabel_1 = new JLabel("A\u00F1o");
 		lblNewLabel_1.setBounds(38, 115, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		txtDNI = new JTextField();
-		txtDNI.setBounds(135, 112, 149, 20);
-		contentPane.add(txtDNI);
-		txtDNI.setColumns(10);
+		txtAnio = new JTextField();
+		txtAnio.setBounds(135, 112, 149, 20);
+		contentPane.add(txtAnio);
+		txtAnio.setColumns(10);
+		
+		cboEstado = new JComboBox<String>();
+		cboEstado.setModel(new DefaultComboBoxModel<String>(new String[] {"[Todos]", "Activo", "Inactivo"}));
+		cboEstado.setBounds(135, 155, 149, 22);
+		contentPane.add(cboEstado);
 	}
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btnFiltrar) {
@@ -125,7 +126,6 @@ public class FrmReporteDocente extends JFrame implements ActionListener {
 		}
 	}
 	protected void do_btnFiltrar_actionPerformed(ActionEvent arg0) {
-	
 		
 		
 	}

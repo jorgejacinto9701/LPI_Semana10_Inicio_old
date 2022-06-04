@@ -16,20 +16,21 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
-public class FrmReporteDocente extends JFrame implements ActionListener {
+public class FrmReporteCampeonato extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtInicio;
-	private JTextField txtFin;
 	private JButton btnFiltrar;
 	private JTextField txtNombre;
-	private JTextField txtDNI;
 	private JPanel panelReporte;
+	private JTextField txtAnio;
+	private JComboBox<String> cboEstado;
 	/**
 	 * Launch the application.
 	 */
@@ -45,7 +46,7 @@ public class FrmReporteDocente extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FrmReporteDocente frame = new FrmReporteDocente();
+					FrmReporteCampeonato frame = new FrmReporteCampeonato();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +58,7 @@ public class FrmReporteDocente extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public FrmReporteDocente() {
+	public FrmReporteCampeonato() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1190, 755);
 		contentPane = new JPanel();
@@ -65,29 +66,11 @@ public class FrmReporteDocente extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblTitulo = new JLabel("Reporte de docente");
+		JLabel lblTitulo = new JLabel("Reporte de campeonato");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(10, 11, 1154, 48);
 		contentPane.add(lblTitulo);
-		
-		JLabel lblFechaDeInicio = new JLabel("Fecha de Inicio");
-		lblFechaDeInicio.setBounds(38, 156, 104, 20);
-		contentPane.add(lblFechaDeInicio);
-		
-		JLabel lblFechaDeFin = new JLabel("Fecha de Fin");
-		lblFechaDeFin.setBounds(359, 159, 85, 14);
-		contentPane.add(lblFechaDeFin);
-		
-		txtInicio = new JTextField();
-		txtInicio.setBounds(135, 156, 149, 20);
-		contentPane.add(txtInicio);
-		txtInicio.setColumns(10);
-		
-		txtFin = new JTextField();
-		txtFin.setBounds(454, 156, 149, 20);
-		contentPane.add(txtFin);
-		txtFin.setColumns(10);
 		
 		btnFiltrar = new JButton("Filtrar");
 		btnFiltrar.addActionListener(this);
@@ -110,14 +93,23 @@ public class FrmReporteDocente extends JFrame implements ActionListener {
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("DNI");
-		lblNewLabel_1.setBounds(38, 115, 46, 14);
+		JLabel lblNewLabel_1 = new JLabel("A\u00F1o");
+		lblNewLabel_1.setBounds(38, 112, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		txtDNI = new JTextField();
-		txtDNI.setBounds(135, 112, 149, 20);
-		contentPane.add(txtDNI);
-		txtDNI.setColumns(10);
+		JLabel lblFechaDeInicio = new JLabel("Estado");
+		lblFechaDeInicio.setBounds(38, 153, 104, 20);
+		contentPane.add(lblFechaDeInicio);
+		
+		cboEstado = new JComboBox<String>();
+		cboEstado.setModel(new DefaultComboBoxModel<String>(new String[] {"[Seleccione]", "Activo", "Inactivo"}));
+		cboEstado.setBounds(135, 152, 149, 22);
+		contentPane.add(cboEstado);
+		
+		txtAnio = new JTextField();
+		txtAnio.setColumns(10);
+		txtAnio.setBounds(135, 109, 149, 20);
+		contentPane.add(txtAnio);
 	}
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btnFiltrar) {

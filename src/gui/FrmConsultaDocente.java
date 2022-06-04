@@ -70,7 +70,7 @@ public class FrmConsultaDocente extends JFrame implements ActionListener {
 		JLabel lblTitulo = new JLabel("Consulta de docente");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(10, 11, 886, 48);
+		lblTitulo.setBounds(10, 11, 950, 48);
 		contentPane.add(lblTitulo);
 		
 		JLabel lblFechaDeInicio = new JLabel("Fecha de Inicio");
@@ -134,7 +134,7 @@ public class FrmConsultaDocente extends JFrame implements ActionListener {
 		}
 	}
 	protected void do_btnFiltrar_actionPerformed(ActionEvent arg0) {
-	
+		
 		
 	}
 }
